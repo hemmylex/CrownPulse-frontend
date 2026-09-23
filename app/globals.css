@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
+  --radius: 1.25rem;
+
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-coral: var(--coral);
+  --color-coral-foreground: var(--coral-foreground);
+  --color-gold: var(--gold);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Fonts */
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-glow: 0 20px 60px -20px oklch(0.65 0.28 0 / 0.45);
+  --shadow-soft: 0 10px 40px -12px oklch(0.55 0.2 20 / 0.25);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: oklch(0.99 0.01 20);
+  --foreground: oklch(0.22 0.06 340);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.06 340);
+  --primary: oklch(0.62 0.28 350);
+  --primary-foreground: oklch(0.99 0.01 350);
+  --coral: oklch(0.72 0.2 30);
+  --coral-foreground: oklch(0.99 0.01 30);
+  --gold: oklch(0.85 0.15 85);
+  --secondary: oklch(0.96 0.03 340);
+  --secondary-foreground: oklch(0.32 0.1 340);
+  --muted: oklch(0.97 0.015 340);
+  --muted-foreground: oklch(0.5 0.05 340);
+  --accent: oklch(0.9 0.1 30);
+  --accent-foreground: oklch(0.32 0.15 20);
+  --destructive: oklch(0.6 0.25 25);
+  --destructive-foreground: oklch(0.99 0.01 25);
+  --border: oklch(0.92 0.03 340);
+  --input: oklch(0.92 0.03 340);
+  --ring: oklch(0.62 0.28 350);
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, oklch(0.62 0.28 350) 0%, oklch(0.72 0.24 20) 100%);
+  --gradient-soft: linear-gradient(135deg, oklch(0.97 0.04 340) 0%, oklch(0.97 0.05 30) 100%);
+  --gradient-royal: linear-gradient(135deg, oklch(0.5 0.25 340) 0%, oklch(0.65 0.26 15) 60%, oklch(0.82 0.18 70) 100%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  /* Better focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  /* Improve touch targets on mobile */
+  button, a, [role="button"] {
+    touch-action: manipulation;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom utilities */
+@utility bg-gradient-hero {
+  background-image: var(--gradient-hero);
+}
+
+@utility bg-gradient-soft {
+  background-image: var(--gradient-soft);
+}
+
+@utility bg-gradient-royal {
+  background-image: var(--gradient-royal);
+}
+
+@utility text-gradient {
+  background-image: var(--gradient-hero);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
 }
