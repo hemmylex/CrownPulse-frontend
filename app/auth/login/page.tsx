@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Crown } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SocialAuthButtons } from "@/components/social-auth-buttons";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
 export default function LoginPage() {
@@ -122,6 +123,11 @@ export default function LoginPage() {
               </Link>
             </div>
           </form>
+
+          {/* Social auth */}
+          <div className="mt-6">
+            <SocialAuthButtons redirectTo={redirect} />
+          </div>
         </div>
       </main>
 

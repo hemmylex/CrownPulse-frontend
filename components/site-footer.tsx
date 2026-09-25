@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Crown } from "lucide-react";
+import Image from "next/image";
 
 export function SiteFooter() {
   return (
@@ -8,9 +8,13 @@ export function SiteFooter() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-4">
           {/* Brand */}
           <div className="flex items-center gap-2">
-            <span className="h-8 w-8 rounded-xl bg-gradient-hero grid place-items-center shrink-0">
-              <Crown className="w-4 h-4 text-primary-foreground" />
-            </span>
+            <Image
+              src="/logo.png"
+              alt="CrownPulse logo"
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-xl object-contain shrink-0"
+            />
             <span className="font-display font-black">CrownPulse</span>
             <span className="text-sm text-muted-foreground ml-1">
               © {new Date().getFullYear()}

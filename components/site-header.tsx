@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
-import { Crown, LogOut, User as UserIcon, Menu, X } from "lucide-react";
+import { LogOut, User as UserIcon, Menu, X } from "lucide-react";
 import { supabaseBrowser } from "@/lib/supabase/client";
 
 const navLinks = [
@@ -62,12 +63,14 @@ export function SiteHeader() {
           className="flex items-center gap-2"
           onClick={() => setMobileOpen(false)}
         >
-          <span className="h-8 w-8 sm:h-9 sm:w-9 rounded-2xl bg-gradient-hero grid place-items-center shadow-glow">
-            <Crown
-              className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground"
-              strokeWidth={2.5}
-            />
-          </span>
+          <Image
+            src="/logo.png"
+            alt="CrownPulse logo"
+            width={36}
+            height={36}
+            className="h-8 w-8 sm:h-9 sm:w-9 rounded-2xl object-contain shrink-0"
+            priority
+          />
           <span className="font-display font-black text-lg sm:text-xl tracking-tight">
             CrownPulse
           </span>
